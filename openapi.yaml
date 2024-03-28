@@ -1228,9 +1228,6 @@ paths:
       - append
       requestBody:
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AppendFiles'
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/AppendFiles'
@@ -1253,6 +1250,12 @@ paths:
               schema:
                 type: string
                 format: binary
+          description: ''
+        '413':
+          content:
+            text/html:
+              schema:
+                description: Uploaded File Is Too Large.
           description: ''
         '400':
           content:
@@ -5499,8 +5502,7 @@ components:
           - 4
           - 5
           type: integer
-          minimum: 0
-          maximum: 32767
+          readOnly: true
         start_time:
           type: string
           format: date-time
@@ -5535,6 +5537,7 @@ components:
       - errors
       - file_name
       - id
+      - status
       - updated_by
       - updated_time
     BulkGenData:
